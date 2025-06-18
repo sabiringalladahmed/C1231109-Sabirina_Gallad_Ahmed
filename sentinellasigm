@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class SentinelAssignment {
+    public static void main(String[] args) {
+        double total = 0;
+        Scanner reader = new Scanner(System.in);
+
+        System.out.println("Geli tirooyinka lagu dari doono. \nRiix 'n' si aad u joojiso.");
+
+        while (true) {
+            System.out.print("Geli tiro integer ah: ");
+            String userInput = reader.nextLine();
+
+            if (userInput.equalsIgnoreCase("n")) {
+                break;
+            }
+
+            try {
+                int number = Integer.parseInt(userInput);
+                if (number < 0) {
+                    System.out.println("2 wax ka yar prime mahan.");
+                } else {
+                    total += number;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Input-kaagu sax ma aha, fadlan geli tiro sax ah.");
+            }
+        }
+
+        System.out.println("Wadarta guud ee tirooyinka: " + total);
+    }
+}
