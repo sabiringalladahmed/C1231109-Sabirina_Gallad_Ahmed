@@ -1,0 +1,101 @@
+import java.util.Scanner;
+
+public class AssignmentTwo {
+    static String[] namesArray = new String[5];
+    static int[] gradesArray = new int[100];
+    static int totalStudents = 0;
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        for (;;) {
+            System.out.println("\n1. Geli arday cusub");
+            System.out.println("2. Raadi arday");
+            System.out.println("3. Tus warbixin");
+            System.out.println("4. Ka bax");
+
+            int selection = scan.nextInt();
+            scan.nextLine(); 
+
+            switch (selection) {
+                case 1:
+                    registerStudent(scan);
+                    break;
+                case 2:
+                    findStudent(scan);
+                    break;
+                case 3:
+                    showStatistics();
+                    break;
+                case 4:
+                    System.out.println("Waad ka baxday nidaamka.");
+                    return;
+                default:
+                    System.out.println("Fadlan dooro 1 ilaa 4.");
+            }
+        }
+    }
+
+    public static void registerStudent(Scanner scanner) {
+        System.out.print("Magaca ardayga: ");
+        String stuName = scanner.nextLine();
+
+        System.out.print("Darajada ardayga: ");
+        int stuGrade = scanner.nextInt();
+        scanner.nextLine();
+
+        if (stuGrade < 0 || stuName.length() < 3) {
+            System.out.println("Xog khaldan ayaa la geliyay.");
+        } else {
+            namesArray[totalStudents] = stuName;
+            gradesArray[totalStudents] = stuGrade;
+            totalStudents++;
+            System.out.println("Ardayga " + stuName + " waa la diiwaan geliyay.");
+        }
+    }
+
+    public static void findStudent(Scanner scanner) {
+        System.out.print("Magaca ardayga la raadinayo: ");
+        String searchName = scanner.nextLine();
+
+        boolean match = false;
+        for (int j = 0; j < totalStudents; j++) {
+            if (namesArray[j].equalsIgnoreCase(searchName)) {
+                System.out.println("Magac: " + namesArray[j] + " | Darajo: " + gradesArray[j]);
+                match = true;
+                break;
+            }
+        }
+
+        if (!match) {
+            System.out.println("Ardayga lama helin.");
+        }
+    }
+
+    public static void showStatistics() {
+        if (totalStudents < 3) {
+            System.out.println("Ugu yaraan 3 arday geli marka hore.");
+            return;
+        }
+
+        int allGrades = 0;
+        int topGrade = gradesArray[0];
+        int lowGrade = gradesArray[0];
+
+        for (int i = 0; i < totalStudents; i++) {
+            int grade = gradesArray[i];
+            allGrades += grade;
+
+            if (grade > topGrade) 
+                topGrade = grade;
+            if (grade < lowGrade) 
+                lowGrade = grade;
+        }
+
+        double avg = (double) allGrades / totalStudents;
+
+        System.out.println("Celceliska: " + avg);
+        System.out.println("Darajada ugu sarraysa: " + topGrade);
+        System.out.println("Darajada ugu hooseysa: " + lowGrade);
+    }
+}
