@@ -1,0 +1,26 @@
+        public class PalindromeChecker {
+            public static void main(String[] args) {
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("enter number");
+                String input = scanner.nextLine();
+                int start = 0;
+                int end = input.length() - 1;
+                boolean isPalindrome = true;
+
+                while (start < end) {
+                    if (input.charAt(start) != input.charAt(end)) {
+                        isPalindrome = false;
+                        break;
+                    }
+                    start++;
+                    end--;
+                }
+
+                if (isPalindrome) {
+                    System.out.println(input + " waa palindrome");
+                } else {
+                    System.out.println(input + " ma aha palindrome");
+                }
+
+            }
+        }
