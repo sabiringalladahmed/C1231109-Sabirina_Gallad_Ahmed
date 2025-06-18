@@ -1,0 +1,35 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class PasswordGenerator {
+    public static void main(String[] args) {
+        String finalPassword = "";
+        Scanner reader = new Scanner(System.in);
+        Random rand = new Random();
+
+        String caps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String smalls = "abcdefghijklmnopqrstuvwxyz";
+        String nums = "0123456789";
+        String symbols = "!@#$%&*";
+
+        String allCharacters = caps + smalls + nums + symbols;
+
+        System.out.print("Geli dhererka password-ka aad rabto: ");
+        int passLength = reader.nextInt();
+
+        for (;;) {
+            if (passLength > 4) {
+                for (int i = 0; i < passLength; i++) {
+                    int randomIndex = rand.nextInt(allCharacters.length());
+                    char randomChar = allCharacters.charAt(randomIndex);
+                    finalPassword += randomChar;
+                }
+                System.out.println("Password-kaaga waa: " + finalPassword);
+                break;
+            } else {
+                System.out.println("Password-ku waa inuu ka bato 4 xaraf. Mar kale geli: ");
+                passLength = reader.nextInt();
+            }
+        }
+    }
+}
